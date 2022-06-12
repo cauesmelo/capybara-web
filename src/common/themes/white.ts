@@ -1,19 +1,11 @@
-// theme.ts
-import { DefaultTheme } from "styled-components";
-export const whiteTheme: DefaultTheme = {
+import { ITheme } from "../../interfaces/ITheme";
+
+export const whiteTheme: ITheme = {
   borderRadius: "4px",
-  palette: {
-    common: {
-      black: "#222831",
-      white: "#ffffff",
-    },
-    primary: {
-      main: "#726a95",
-      contrastText: "#ffffff",
-    },
-    secondary: {
-      main: "#709fb0",
-      contrastText: "#ffffff",
-    },
-  },
+  strongBg: "#3d3d3d",
+  semiStrongBg: "#ababab",
+  mediumBg: "#eeeeee",
+  lightBg: "#fafafa",
+  mediumFont: "#2e2e2e",
+  lightFont: "#999",
 };

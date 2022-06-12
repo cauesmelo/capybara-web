@@ -1,15 +1,23 @@
+import "react-toastify/dist/ReactToastify.min.css";
+import { ToastContainer } from "react-toastify";
+import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./common/styles/global";
 import { whiteTheme } from "./common/themes/white";
-import { Login } from "./components/Login";
+import { QueryClientProvider } from "react-query";
+import { queryClient } from "./services/queryClient";
+import { RoutesRoot } from "./routes";
 
 export const App = () => {
   return (
-    <div>
-      <ThemeProvider theme={whiteTheme}>
-        <Login />
-        <GlobalStyle />
-      </ThemeProvider>
-    </div>
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={whiteTheme}>
+          <RoutesRoot />
+          <GlobalStyle />
+        </ThemeProvider>
+        <ToastContainer />
+      </QueryClientProvider>
+    </RecoilRoot>
   );
 };
