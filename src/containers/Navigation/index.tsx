@@ -1,4 +1,3 @@
-import React from "react";
 import { Wrapper } from "./style";
 import { PortalName } from "./components/PortalName";
 import { useHistory } from "react-router-dom";

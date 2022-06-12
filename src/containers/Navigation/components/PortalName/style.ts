@@ -11,9 +11,9 @@ export const Wrapper = styled.div`
 export const PortalTitle = styled.p`
   text-transform: uppercase;
   margin-left: 15px;
-  font-size: 21px;
-  letter-spacing: 0.01rem;
-  font-weight: 100;
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
+  font-weight: 300;
   user-select: none;
-  color: var(--grey-100);
+  color: ${(props) => props.theme.lightBg};
 `;

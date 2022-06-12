@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  padding: 20px 50px;
+  padding: 10px 50px;
   display: flex;
-  height: 80px;
+  height: 50px;
+  background-color: ${(props) => props.theme.strongBg};
 `;
