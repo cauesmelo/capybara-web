@@ -9,7 +9,6 @@ interface MenuItemWrapperProps {
 }
 
 export const Wrapper = styled.div`
-  flex: 1;
   margin: 0 2rem;
   display flex;
   align-items: center;

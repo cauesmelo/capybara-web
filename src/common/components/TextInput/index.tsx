@@ -1,14 +1,14 @@
 import { Input, Title, Wrapper } from "./style";
 
-interface TextInputProps {
+interface TextInputProps extends React.HTMLProps<HTMLInputElement> {
   title: string;
 }
 
-export const TextInput = ({ title }: TextInputProps) => {
+export const TextInput = ({ title, type }: TextInputProps) => {
   return (
     <Wrapper>
       <Title>{title}</Title>
-      <Input />
+      <Input type={type} />
     </Wrapper>
   );
 };

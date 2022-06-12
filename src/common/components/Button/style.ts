@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ButtonWrapper = styled.div`
+export const ButtonWrapper = styled.button`
   background: ${(props) => props.theme.strongBg};
   color: ${(props) => props.theme.lightBg};
   border: 1px solid ${(props) => props.theme.mediumBg};
@@ -10,8 +10,6 @@ export const ButtonWrapper = styled.div`
   border-radius: ${(props) => props.theme.borderRadius};
   user-select: none;
   cursor: pointer;
-  transition: 0.1s background-color;
-  will-change: background-color;
 
   &:active {
     background-color: ${(props) => props.theme.semiStrongBg};

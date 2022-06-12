@@ -11,11 +11,12 @@ export const Title = styled.p`
   margin-bottom: 0.3rem;
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<React.HTMLProps<HTMLInputElement>>`
   line-height: 1.5rem;
   border: 1px solid ${(props) => props.theme.semiStrongBg};
   border-radius: ${(props) => props.theme.borderRadius};
   outline: none;
+  padding: 2px 10px;
 
   &:focus {
     border: 1px solid ${(props) => props.theme.strongBg};

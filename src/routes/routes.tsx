@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 import { Transition } from "../common/components/Transition";
+import { CreateAccountPage } from "../pages/CreateAccount";
 import { ForbiddenPage } from "../pages/Forbidden";
 import { HomePage } from "../pages/Home";
 import { NotesPage } from "../pages/Notes";
 import { PreferencesPage } from "../pages/Preferences";
 import { RemindersPage } from "../pages/Reminders";
 import { TasklistsPage } from "../pages/Tasklists";
-import { AuthRoute } from "./adminRoute";
+import { AuthRoute } from "./authRoute";
 
 export const Routes = () => {
   const location = useLocation();
@@ -33,6 +34,10 @@ export const Routes = () => {
       <Switch location={displayLocation}>
         <Route path="/" exact>
           <HomePage />
+        </Route>
+
+        <Route path="/create-account" exact>
+          <CreateAccountPage />
         </Route>
 
         <AuthRoute path="/notes" exact>

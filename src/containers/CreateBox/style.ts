@@ -25,3 +25,9 @@ export const Box = styled.div`
 export const IconWrapper = styled.div`
   height: 150px;
 `;
+
+export const SubTitle = styled.div`
+  font-size: 1.5rem;
+  color: ${(props) => props.theme.strongBg};
+  margin: 1rem 0rem;
+`;

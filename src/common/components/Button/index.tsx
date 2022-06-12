@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { ButtonWrapper } from "./style";
 
-interface ButtonProps {
+interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
   children: ReactNode;
 }
 
