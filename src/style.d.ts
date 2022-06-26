@@ -9,5 +9,6 @@ declare module "styled-components" {
     mediumFont: string;
     lightFont: string;
     borderRadius: string;
+    error: string;
   }
 }

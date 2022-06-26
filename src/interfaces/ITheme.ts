@@ -6,4 +6,5 @@ export interface ITheme {
   mediumFont: string;
   lightFont: string;
   borderRadius: string;
+  error: string;
 }

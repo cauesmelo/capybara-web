@@ -22,3 +22,10 @@ export const Input = styled.input<React.HTMLProps<HTMLInputElement>>`
     border: 1px solid ${(props) => props.theme.strongBg};
   }
 `;
+
+export const Error = styled.p`
+  color: ${(props) => props.theme.error};
+  margin-top: 2px;
+  margin-left: 5px;
+  font-size: 0.8rem;
+`;

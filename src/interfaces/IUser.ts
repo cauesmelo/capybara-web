@@ -1,6 +1,8 @@
+import { IAvailableThemes } from "./IAvailableThemes";
+
 export interface IUser {
   token: string;
-  theme: "WHITE" | "BLACK";
+  theme: IAvailableThemes;
   emailNotification: string;
   email: string;
   name: string;

@@ -8,4 +8,5 @@ export const whiteTheme: ITheme = {
   lightBg: "#fafafa",
   mediumFont: "#2e2e2e",
   lightFont: "#999",
+  error: "#870d2d",
 };

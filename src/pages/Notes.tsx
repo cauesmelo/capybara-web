@@ -1,7 +1,9 @@
+import { PageWrapper } from "../common/components/PageWrapper";
+
 export const NotesPage = () => {
   return (
-    <div>
+    <PageWrapper>
       <p>Notes</p>
-    </div>
+    </PageWrapper>
   );
 };
