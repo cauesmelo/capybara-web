@@ -15,6 +15,14 @@ export const parseError = (error: any): string => {
     if (error.response?.data.error === "NOT_OWNED") {
       return "Item de outro autor.";
     }
+
+    if (error.response?.data.error === "DuplicateUserName") {
+      return "Usuário já cadastrado.";
+    }
+
+    if (error.response?.data.error === "PasswordTooShort") {
+      return "Senha muito curta.";
+    }
   }
 
   return "Erro ao processar requisição, tente mais tarde novamente.";

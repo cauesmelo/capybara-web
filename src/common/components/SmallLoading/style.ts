@@ -7,9 +7,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
   color: var(--green);
   gap: 1rem;
-  background-color: ${(props) => props.theme.lightBg};
-  border: 1px solid ${(props) => props.theme.mediumBg};
-  border-radius: ${(props) => props.theme.borderRadius};
 `;
 
 export const Text = styled.p`

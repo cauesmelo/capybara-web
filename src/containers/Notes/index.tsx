@@ -65,26 +65,30 @@ export const NotesContainer = () => {
       <Content>
         {isLoading && <SmallLoading />}
 
-        {pageItems.map((note) => (
-          <Note key={note.id}>
-            <NoteMenu>
-              <NoteMenuButton onClick={() => handleOpenEdit(note)}>
-                <IoPencilOutline />
-              </NoteMenuButton>
+        {!isLoading && (
+          <>
+            {pageItems.map((note) => (
+              <Note key={note.id}>
+                <NoteMenu>
+                  <NoteMenuButton onClick={() => handleOpenEdit(note)}>
+                    <IoPencilOutline />
+                  </NoteMenuButton>
 
-              <NoteMenuButton danger onClick={() => handleOpenDelete(note)}>
-                <IoTrashOutline />
-              </NoteMenuButton>
-            </NoteMenu>
+                  <NoteMenuButton danger onClick={() => handleOpenDelete(note)}>
+                    <IoTrashOutline />
+                  </NoteMenuButton>
+                </NoteMenu>
 
-            <NoteContent>{note.content}</NoteContent>
+                <NoteContent>{note.content}</NoteContent>
 
-            <NoteCreation>
-              {note.createdAt.toLocaleDateString("pt-BR")}
-            </NoteCreation>
-          </Note>
-        ))}
-        <Pagination />
+                <NoteCreation>
+                  {note.createdAt.toLocaleDateString("pt-BR")}
+                </NoteCreation>
+              </Note>
+            ))}
+            <Pagination />
+          </>
+        )}
       </Content>
 
       <CreateNote
