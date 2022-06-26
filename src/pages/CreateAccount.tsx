@@ -1,10 +1,10 @@
 import { PageWrapper } from "../common/components/PageWrapper";
-import { CreateBox } from "../containers/CreateBox";
+import { CreateAccountContainer } from "../containers/CreateAccount";
 
 export const CreateAccountPage = () => {
   return (
     <PageWrapper>
-      <CreateBox />
+      <CreateAccountContainer />
     </PageWrapper>
   );
 };

@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
 import { authState } from "../../../../recoil/atoms";
 import { useRecoilState } from "recoil";
-import { Wrapper } from "./style";
+import { WelcomeText, Wrapper } from "./style";
 import { Button } from "../../../../common/components/Button";
 import { toast } from "react-toastify";
 
@@ -17,6 +17,15 @@ export const NavigationMenu = () => {
   };
 
   return (
-    <Wrapper>{auth && <Button onClick={handleLogout}>Sair</Button>}</Wrapper>
+    <Wrapper>
+      {auth && (
+        <>
+          <WelcomeText>Bem-vindo, {auth.name}</WelcomeText>
+          <Button small onClick={handleLogout}>
+            Sair
+          </Button>
+        </>
+      )}
+    </Wrapper>
   );
 };

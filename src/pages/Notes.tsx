@@ -1,5 +1,6 @@
 import { Main } from "../common/components/Main";
 import { PageWrapper } from "../common/components/PageWrapper";
+import { NotesContainer } from "../containers/Notes";
 import { SideMenu } from "../containers/SideMenu";
 
 export const NotesPage = () => {
@@ -7,7 +8,7 @@ export const NotesPage = () => {
     <PageWrapper>
       <Main>
         <SideMenu selected={"notes"} />
-        <p>Notes</p>
+        <NotesContainer />
       </Main>
     </PageWrapper>
   );

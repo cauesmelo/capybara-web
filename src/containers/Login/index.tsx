@@ -18,7 +18,7 @@ import { hasEmptyInputs } from "../../utils/hasEmptyInputs";
 import { parseError } from "../../utils/parseError";
 import { IconWrapper, Wrapper } from "./style";
 
-export const LoginBox = () => {
+export const LoginContainer = () => {
   const history = useHistory();
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState(TextInputInitialState);
@@ -57,7 +57,7 @@ export const LoginBox = () => {
 
   useEffect(() => {
     if (auth) history.push("/notes");
-  }, []);
+  }, [auth, history]);
 
   return (
     <Wrapper>

@@ -4,8 +4,13 @@ import { ButtonWrapper } from "./style";
 interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
   children: ReactNode;
   onClick?: () => void;
+  small?: boolean;
 }
 
-export const Button = ({ children, onClick }: ButtonProps) => {
-  return <ButtonWrapper onClick={onClick}>{children}</ButtonWrapper>;
+export const Button = ({ children, onClick, small }: ButtonProps) => {
+  return (
+    <ButtonWrapper onClick={onClick} small={small}>
+      {children}
+    </ButtonWrapper>
+  );
 };

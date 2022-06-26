@@ -9,7 +9,7 @@ import { CapybaraIcon } from "../../common/icons/Capybara";
 import { TextInputInitialState } from "../../interfaces/ITextInputState";
 import { IconWrapper, SubTitle, Wrapper } from "./style";
 
-export const CreateBox = () => {
+export const CreateAccountContainer = () => {
   const handleCreate = {};
 
   const history = useHistory();

@@ -1,6 +1,10 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const ButtonWrapper = styled.button`
+interface ButtonWrapperProps {
+  small?: boolean;
+}
+
+export const ButtonWrapper = styled.button<ButtonWrapperProps>`
   background: ${(props) => props.theme.strongBg};
   color: ${(props) => props.theme.lightBg};
   border: 1px solid ${(props) => props.theme.mediumBg};
@@ -13,4 +17,10 @@ export const ButtonWrapper = styled.button`
   &:active {
     background-color: ${(props) => props.theme.semiStrongBg};
   }
+
+  ${(props) =>
+    props.small &&
+    css`
+      padding: 5px 15px; ;
+    `}
 `;

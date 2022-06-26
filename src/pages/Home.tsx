@@ -1,10 +1,10 @@
 import { PageWrapper } from "../common/components/PageWrapper";
-import { LoginBox } from "../containers/LoginBox";
+import { LoginContainer } from "../containers/Login";
 
 export const HomePage = () => {
   return (
     <PageWrapper>
-      <LoginBox />
+      <LoginContainer />
     </PageWrapper>
   );
 };

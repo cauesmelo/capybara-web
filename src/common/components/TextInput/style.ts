@@ -29,3 +29,16 @@ export const Error = styled.p`
   margin-left: 5px;
   font-size: 0.8rem;
 `;
+
+export const InputArea = styled.textarea<React.HTMLProps<HTMLInputElement>>`
+  line-height: 1.5rem;
+  border: 1px solid ${(props) => props.theme.semiStrongBg};
+  border-radius: ${(props) => props.theme.borderRadius};
+  outline: none;
+  padding: 2px 10px;
+  resize: vertical;
+
+  &:focus {
+    border: 1px solid ${(props) => props.theme.strongBg};
+  }
+`;
