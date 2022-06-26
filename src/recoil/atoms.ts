@@ -1,3 +1,4 @@
+import { retrieveCredentials } from "./../utils/retrieveCredentials";
 import { whiteTheme } from "./../common/themes/white";
 import { ITheme } from "../interfaces/ITheme";
 import { atom } from "recoil";
@@ -8,7 +9,7 @@ export const themeState = atom<ITheme>({
   default: whiteTheme,
 });
 
-export const authState = atom<IUser>({
+export const authState = atom<IUser | undefined>({
   key: "authState",
-  default: undefined,
+  default: retrieveCredentials(),
 });

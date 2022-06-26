@@ -6,7 +6,6 @@ export const ButtonWrapper = styled.button`
   border: 1px solid ${(props) => props.theme.mediumBg};
   width: fit-content;
   padding: 10px 30px;
-  margin: 20px 0px;
   border-radius: ${(props) => props.theme.borderRadius};
   user-select: none;
   cursor: pointer;

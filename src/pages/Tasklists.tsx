@@ -1,7 +1,14 @@
+import { Main } from "../common/components/Main";
+import { PageWrapper } from "../common/components/PageWrapper";
+import { SideMenu } from "../containers/SideMenu";
+
 export const TasklistsPage = () => {
   return (
-    <div>
-      <p>tasklists</p>
-    </div>
+    <PageWrapper>
+      <Main>
+        <SideMenu selected={"tasklists"} />
+        <p>Listas de tarefas</p>
+      </Main>
+    </PageWrapper>
   );
 };

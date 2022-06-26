@@ -21,7 +21,7 @@ export const AuthRoute = ({ children, ...rest }: AuthRouteProps) => {
         ) : (
           <Redirect
             to={{
-              pathname: "/acesso-negado",
+              pathname: "/",
               state: { from: location },
             }}
           />

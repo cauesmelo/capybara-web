@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { Box } from "../../common/components/Box";
 import { Button } from "../../common/components/Button";
 import { Link } from "../../common/components/Link";
@@ -23,7 +23,7 @@ export const LoginBox = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState(TextInputInitialState);
   const [password, setPassword] = useState(TextInputInitialState);
-  const setAuth = useSetRecoilState(authState);
+  const [auth, setAuth] = useRecoilState(authState);
 
   const form: IReactState<IInputState>[] = [
     [email, setEmail],
@@ -38,8 +38,9 @@ export const LoginBox = () => {
           email: email.content,
           password: password.content,
         });
-        toast.success("Login realizado com sucesso.");
+        toast.success("Login realizado com sucesso");
         setAuth(credentials);
+        localStorage.setItem("@capybaraData", JSON.stringify(credentials));
         history.push("/notes");
       } catch (err: any) {
         console.error(err);
@@ -53,6 +54,10 @@ export const LoginBox = () => {
   const handleCreate = () => {
     history.push("/create-account");
   };
+
+  useEffect(() => {
+    if (auth) history.push("/notes");
+  }, []);
 
   return (
     <Wrapper>

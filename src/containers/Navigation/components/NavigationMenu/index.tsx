@@ -1,16 +1,19 @@
 import { useHistory } from "react-router-dom";
 import { authState } from "../../../../recoil/atoms";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { Wrapper } from "./style";
 import { Button } from "../../../../common/components/Button";
+import { toast } from "react-toastify";
 
 export const NavigationMenu = () => {
-  const auth = useRecoilValue(authState);
+  const [auth, setAuth] = useRecoilState(authState);
   const history = useHistory();
 
   const handleLogout = () => {
-    localStorage.removeItem("@capybara:token");
+    localStorage.removeItem("@capybaraData");
+    setAuth(undefined);
     history.push("/");
+    toast.success("Deslogado com sucesso");
   };
 
   return (
