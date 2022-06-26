@@ -60,9 +60,7 @@ export const CreateNote = ({ show, onDismiss }: CreateNotePopupProps) => {
     >
       <TextInput textarea state={[note, setNote]} />
 
-      <Button type="Basic" onClick={handleCreateNote}>
-        Criar nota
-      </Button>
+      <Button onClick={handleCreateNote}>Criar nota</Button>
     </GenericPopup>
   );
 };

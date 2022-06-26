@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 
 interface ButtonWrapperProps {
   small?: boolean;
+  danger?: boolean;
 }
 
 export const ButtonWrapper = styled.button<ButtonWrapperProps>`
@@ -21,6 +22,12 @@ export const ButtonWrapper = styled.button<ButtonWrapperProps>`
   ${(props) =>
     props.small &&
     css`
-      padding: 5px 15px; ;
+      padding: 5px 15px;
+    `}
+
+  ${(props) =>
+    props.danger &&
+    css`
+      background-color: ${(props) => props.theme.error};
     `}
 `;

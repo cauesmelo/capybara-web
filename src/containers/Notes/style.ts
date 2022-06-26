@@ -65,3 +65,25 @@ export const NoteMenuButton = styled.div<NoteMenuButtonProps>`
       color: ${(props) => props.theme.error};
     `}
 `;
+
+export const AlertText = styled.div`
+  margin-top: 1rem;
+  color: ${(props) => props.theme.error};
+
+  span {
+    font-weight: bold;
+  }
+`;
+
+export const NoteShowCase = styled.div`
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid ${(props) => props.theme.strongBg};
+  border-radius: ${(props) => props.theme.borderRadius};
+`;
+
+export const LineButton = styled.div`
+  display: flex;
+  margin-top: 1rem;
+  gap: 0.5rem;
+`;

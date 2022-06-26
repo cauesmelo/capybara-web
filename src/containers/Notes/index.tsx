@@ -8,6 +8,7 @@ import { authState } from "../../recoil/atoms";
 import { api } from "../../services/api";
 import { useNote } from "../../services/hooks/useNotes";
 import { CreateNote } from "./components/CreateNote";
+import { DeleteNote } from "./components/DeleteNote";
 import { EditNote } from "./components/EditNote";
 import {
   Content,
@@ -87,6 +88,14 @@ export const NotesContainer = () => {
         <EditNote
           show={showEditPopup}
           onDismiss={() => setShowEditPopup(false)}
+          selectedNote={selectedNote}
+        />
+      )}
+
+      {selectedNote && (
+        <DeleteNote
+          show={showDeletePopup}
+          onDismiss={() => setShowDeletePopup(false)}
           selectedNote={selectedNote}
         />
       )}

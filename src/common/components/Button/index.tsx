@@ -5,11 +5,12 @@ interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
   children: ReactNode;
   onClick?: () => void;
   small?: boolean;
+  danger?: boolean;
 }
 
-export const Button = ({ children, onClick, small }: ButtonProps) => {
+export const Button = ({ children, onClick, small, danger }: ButtonProps) => {
   return (
-    <ButtonWrapper onClick={onClick} small={small}>
+    <ButtonWrapper onClick={onClick} small={small} danger={danger}>
       {children}
     </ButtonWrapper>
   );

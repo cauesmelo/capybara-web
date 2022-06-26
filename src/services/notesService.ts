@@ -28,3 +28,9 @@ export const updateNote = async (note: INoteUpdate): Promise<INote> => {
     updatedAt: new Date(data.updatedAt),
   };
 };
+
+export const deleteNote = async (noteId: number): Promise<boolean> => {
+  await api.delete("note/" + noteId);
+
+  return true;
+};
