@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoPencilOutline, IoTrashOutline } from "react-icons/io5";
 import { useRecoilValue } from "recoil";
 import { Button } from "../../common/components/Button";
 import { SmallLoading } from "../../common/components/SmallLoading";
+import { usePagination } from "../../common/hooks/usePagination";
 import { INote } from "../../interfaces/INote";
 import { authState } from "../../recoil/atoms";
 import { api } from "../../services/api";
@@ -31,6 +32,8 @@ export const NotesContainer = () => {
   const auth = useRecoilValue(authState);
   api.defaults.headers.common["Authorization"] = `Bearer ${auth?.token}`;
 
+  const { pageItems, setAllItems, Pagination } = usePagination<INote>();
+
   const { data, isLoading } = useNote();
   const notes = data ?? [];
 
@@ -48,6 +51,10 @@ export const NotesContainer = () => {
     setShowDeletePopup(true);
   };
 
+  useEffect(() => {
+    setAllItems(notes);
+  }, [data]);
+
   return (
     <Wrapper>
       <Line>
@@ -58,7 +65,7 @@ export const NotesContainer = () => {
       <Content>
         {isLoading && <SmallLoading />}
 
-        {notes.map((note) => (
+        {pageItems.map((note) => (
           <Note key={note.id}>
             <NoteMenu>
               <NoteMenuButton onClick={() => handleOpenEdit(note)}>
@@ -77,6 +84,7 @@ export const NotesContainer = () => {
             </NoteCreation>
           </Note>
         ))}
+        <Pagination />
       </Content>
 
       <CreateNote
