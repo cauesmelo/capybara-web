@@ -1,4 +1,4 @@
-import { INote, INoteRaw } from "../interfaces/INote";
+import { INote, INoteRaw, INoteUpdate } from "../interfaces/INote";
 import { api } from "./api";
 
 export const getAllNotes = async (): Promise<INote[]> => {
@@ -13,6 +13,15 @@ export const getAllNotes = async (): Promise<INote[]> => {
 
 export const createNote = async (note: string): Promise<INote> => {
   const { data } = await api.post("note", { content: note });
+  return {
+    ...data,
+    createdAt: new Date(data.createdAt),
+    updatedAt: new Date(data.updatedAt),
+  };
+};
+
+export const updateNote = async (note: INoteUpdate): Promise<INote> => {
+  const { data } = await api.put("note/" + note.id, { content: note.content });
   return {
     ...data,
     createdAt: new Date(data.createdAt),

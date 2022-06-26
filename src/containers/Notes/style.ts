@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 
 interface NoteMenuButtonProps {
   danger?: boolean;
+  onClick?: () => void;
 }
 
 export const Wrapper = styled.div`

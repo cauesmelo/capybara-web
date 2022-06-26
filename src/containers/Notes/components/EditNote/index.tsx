@@ -9,20 +9,28 @@ import {
   GenericPopup,
   IGenericPopupProps,
 } from "../../../../common/components/GenericPopup";
-import { createNote } from "../../../../services/notesService";
+import { createNote, updateNote } from "../../../../services/notesService";
 import { parseError } from "../../../../utils/parseError";
+import { INote, INoteUpdate } from "../../../../interfaces/INote";
 
-type CreateNotePopupProps = Pick<IGenericPopupProps, "show" | "onDismiss">;
+interface UpdateNoteProps
+  extends Pick<IGenericPopupProps, "show" | "onDismiss"> {
+  selectedNote: INote;
+}
 
-export const CreateNote = ({ show, onDismiss }: CreateNotePopupProps) => {
+export const EditNote = ({
+  selectedNote,
+  show,
+  onDismiss,
+}: UpdateNoteProps) => {
   const [note, setNote] = useState(TextInputInitialState);
 
-  const createNoteMutation = useMutation(
-    async (note: string) => await createNote(note),
+  const updateNoteMutation = useMutation(
+    async (note: INoteUpdate) => await updateNote(note),
     {
       onSuccess: () => {
         queryClient.invalidateQueries("notes");
-        toast.success("Nota criada com sucesso");
+        toast.success("Nota atualizada com sucesso");
       },
       onError: (err) => {
         console.error(err);
@@ -34,34 +42,40 @@ export const CreateNote = ({ show, onDismiss }: CreateNotePopupProps) => {
     }
   );
 
-  const handleCreateNote = async () => {
+  const handleEditNote = async () => {
     if (note.content.length === 0) {
       setNote({
         content: "",
-        error: "Não é possível criar uma nota vazia",
+        error: "Não é possível salvar uma nota vazia",
       });
     } else {
-      await createNoteMutation.mutateAsync(note.content);
+      await updateNoteMutation.mutateAsync({
+        id: selectedNote.id,
+        content: note.content,
+      });
     }
   };
 
   useEffect(() => {
-    if (!show) {
-      setNote(TextInputInitialState);
+    if (show) {
+      setNote({
+        content: selectedNote.content,
+        error: "",
+      });
     }
   }, [show]);
 
   return (
     <GenericPopup
-      isLoading={createNoteMutation.isLoading}
-      title="Nova nota"
+      isLoading={updateNoteMutation.isLoading}
+      title="Atualizar nota"
       onDismiss={onDismiss}
       show={show}
     >
       <TextInput textarea state={[note, setNote]} />
 
-      <Button type="Basic" onClick={handleCreateNote}>
-        Criar nota
+      <Button type="Basic" onClick={handleEditNote}>
+        Salvar
       </Button>
     </GenericPopup>
   );

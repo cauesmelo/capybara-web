@@ -13,3 +13,8 @@ export interface INoteRaw {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface INoteUpdate {
+  content: string;
+  id: number;
+}
