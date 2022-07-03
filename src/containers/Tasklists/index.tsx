@@ -4,13 +4,11 @@ import { useRecoilValue } from "recoil";
 import { Button } from "../../common/components/Button";
 import { SmallLoading } from "../../common/components/SmallLoading";
 import { usePagination } from "../../common/hooks/usePagination";
-import { INote } from "../../interfaces/INote";
+import { ITaskList } from "../../interfaces/ITaskList";
 import { authState } from "../../recoil/atoms";
 import { api } from "../../services/api";
-import { useNote } from "../../services/hooks/useNotes";
-import { CreateNote } from "./components/CreateNote";
-import { DeleteNote } from "./components/DeleteNote";
-import { EditNote } from "./components/EditNote";
+import { useTaskList } from "../../services/hooks/useTasklist";
+import { Create } from "./components/Create";
 import {
   Content,
   Line,
@@ -23,42 +21,44 @@ import {
   Wrapper,
 } from "./style";
 
-export const NotesContainer = () => {
+export const TasklistsContainer = () => {
   const [showCreatePopup, setShowCreatePopup] = useState(false);
   const [showEditPopup, setShowEditPopup] = useState(false);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
-  const [selectedNote, setSelectedNote] = useState<INote>();
+  const [selectedTaskList, setSelectedTaskList] = useState<ITaskList>();
 
   const auth = useRecoilValue(authState);
   api.defaults.headers.common["Authorization"] = `Bearer ${auth?.token}`;
 
-  const { data, isLoading } = useNote();
-  const notes = data ?? [];
-  const { pageItems, setAllItems, Pagination } = usePagination<INote>(notes);
+  const { data, isLoading } = useTaskList();
+  console.log(data);
+  const tasklists = data ?? [];
+  const { pageItems, setAllItems, Pagination } =
+    usePagination<ITaskList>(tasklists);
 
   const handleOpenCreate = () => {
     setShowCreatePopup(true);
   };
 
-  const handleOpenEdit = (note: INote) => {
-    setSelectedNote(note);
+  const handleOpenEdit = (tasklist: ITaskList) => {
+    setSelectedTaskList(tasklist);
     setShowEditPopup(true);
   };
 
-  const handleOpenDelete = (note: INote) => {
-    setSelectedNote(note);
+  const handleOpenDelete = (tasklist: ITaskList) => {
+    setSelectedTaskList(tasklist);
     setShowDeletePopup(true);
   };
 
   useEffect(() => {
-    setAllItems(notes);
+    setAllItems(tasklists);
   }, [data]);
 
   return (
     <Wrapper>
       <Line>
-        <Title>Notas</Title>
-        <Button onClick={handleOpenCreate}>Criar nota</Button>
+        <Title>Listas de tarefas</Title>
+        <Button onClick={handleOpenCreate}>Criar lista</Button>
       </Line>
 
       <Content>
@@ -66,22 +66,25 @@ export const NotesContainer = () => {
 
         {!isLoading && (
           <>
-            {pageItems.map((note) => (
-              <Note key={note.id}>
+            {pageItems.map((tasklist) => (
+              <Note key={tasklist.id}>
                 <NoteMenu>
-                  <NoteMenuButton onClick={() => handleOpenEdit(note)}>
+                  <NoteMenuButton onClick={() => handleOpenEdit(tasklist)}>
                     <IoPencilOutline />
                   </NoteMenuButton>
 
-                  <NoteMenuButton danger onClick={() => handleOpenDelete(note)}>
+                  <NoteMenuButton
+                    danger
+                    onClick={() => handleOpenDelete(tasklist)}
+                  >
                     <IoTrashOutline />
                   </NoteMenuButton>
                 </NoteMenu>
 
-                <NoteContent>{note.content}</NoteContent>
+                <NoteContent>{tasklist.title}</NoteContent>
 
                 <NoteCreation>
-                  {note.createdAt.toLocaleDateString("pt-BR")}
+                  {tasklist.createdAt.toLocaleDateString("pt-BR")}
                 </NoteCreation>
               </Note>
             ))}
@@ -90,26 +93,26 @@ export const NotesContainer = () => {
         )}
       </Content>
 
-      <CreateNote
+      <Create
         show={showCreatePopup}
         onDismiss={() => setShowCreatePopup(false)}
       />
 
-      {selectedNote && (
+      {/* {selectedTaskList && (
         <EditNote
           show={showEditPopup}
           onDismiss={() => setShowEditPopup(false)}
-          selectedNote={selectedNote}
+          selectedNote={selectedTaskList}
         />
       )}
 
-      {selectedNote && (
+      {selectedTaskList && (
         <DeleteNote
           show={showDeletePopup}
           onDismiss={() => setShowDeletePopup(false)}
-          selectedNote={selectedNote}
+          selectedNote={selectedTaskList}
         />
-      )}
+      )} */}
     </Wrapper>
   );
 };

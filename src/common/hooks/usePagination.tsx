@@ -10,9 +10,11 @@ export interface IPaginationHook<T> {
 
 const pageSize = 10;
 
-export const usePagination = <T,>(): IPaginationHook<T> => {
-  const [pageItems, setPageItems] = useState<T[]>([]);
-  const [allItems, setAllItems] = useState<T[]>([]);
+export const usePagination = <T,>(items?: T[]): IPaginationHook<T> => {
+  const [pageItems, setPageItems] = useState<T[]>(
+    items?.slice(0 * pageSize, pageSize + pageSize) ?? []
+  );
+  const [allItems, setAllItems] = useState<T[]>(items ?? []);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(
     Math.ceil(allItems.length / pageSize)

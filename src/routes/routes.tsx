@@ -2,12 +2,8 @@ import { useState, useEffect } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 import { Transition } from "../common/components/Transition";
 import { CreateAccountPage } from "../pages/CreateAccount";
-import { ForbiddenPage } from "../pages/Forbidden";
-import { HomePage } from "../pages/Home";
-import { NotesPage } from "../pages/Notes";
-import { PreferencesPage } from "../pages/Preferences";
-import { RemindersPage } from "../pages/Reminders";
-import { TasklistsPage } from "../pages/Tasklists";
+import { HomePage } from "../pages/Login";
+import { MainPage } from "../pages/Main";
 import { AuthRoute } from "./authRoute";
 
 export const Routes = () => {
@@ -41,24 +37,8 @@ export const Routes = () => {
         </Route>
 
         <AuthRoute path="/notes" exact>
-          <NotesPage />
+          <MainPage />
         </AuthRoute>
-
-        <AuthRoute path="/reminders" exact>
-          <RemindersPage />
-        </AuthRoute>
-
-        <AuthRoute path="/tasklists" exact>
-          <TasklistsPage />
-        </AuthRoute>
-
-        <AuthRoute path="/preferences" exact>
-          <PreferencesPage />
-        </AuthRoute>
-
-        <Route path="/acesso-negado">
-          <ForbiddenPage />
-        </Route>
       </Switch>
     </Transition>
   );

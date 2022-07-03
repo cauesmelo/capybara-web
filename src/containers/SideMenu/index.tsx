@@ -5,17 +5,15 @@ import {
   IoListOutline,
   IoSettingsOutline,
 } from "react-icons/io5";
-import { useHistory } from "react-router-dom";
 
 interface SideMenuProps {
   selected: string;
+  setSelected: (v: string) => void;
 }
 
-export const SideMenu = ({ selected }: SideMenuProps) => {
-  const history = useHistory();
-
+export const SideMenu = ({ selected, setSelected }: SideMenuProps) => {
   const navigate = (location: string) => {
-    if (location !== selected) history.push(location);
+    setSelected(location);
   };
 
   return (

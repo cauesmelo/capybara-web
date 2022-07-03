@@ -23,7 +23,7 @@ import {
   Wrapper,
 } from "./style";
 
-export const NotesContainer = () => {
+export const RemindersContainer = () => {
   const [showCreatePopup, setShowCreatePopup] = useState(false);
   const [showEditPopup, setShowEditPopup] = useState(false);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
@@ -32,9 +32,10 @@ export const NotesContainer = () => {
   const auth = useRecoilValue(authState);
   api.defaults.headers.common["Authorization"] = `Bearer ${auth?.token}`;
 
+  const { pageItems, setAllItems, Pagination } = usePagination<INote>();
+
   const { data, isLoading } = useNote();
   const notes = data ?? [];
-  const { pageItems, setAllItems, Pagination } = usePagination<INote>(notes);
 
   const handleOpenCreate = () => {
     setShowCreatePopup(true);
@@ -57,8 +58,8 @@ export const NotesContainer = () => {
   return (
     <Wrapper>
       <Line>
-        <Title>Notas</Title>
-        <Button onClick={handleOpenCreate}>Criar nota</Button>
+        <Title>Lembretes</Title>
+        <Button onClick={handleOpenCreate}>Criar lista</Button>
       </Line>
 
       <Content>

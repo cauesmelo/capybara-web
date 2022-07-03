@@ -1,26 +1,31 @@
 export const parseError = (error: any): string => {
-  if (error.response) {
-    if (error.response?.data.error === "INVALID_USERNAME") {
+  if (
+    error &&
+    error.response &&
+    error.response.data &&
+    error.response.data.error
+  ) {
+    if (error.response.data.error === "INVALID_USERNAME") {
       return "Usuário inválido.";
     }
 
-    if (error.response?.data.error === "INVALID_PASSWORD") {
+    if (error.response.data.error === "INVALID_PASSWORD") {
       return "Senha inválida.";
     }
 
-    if (error.response?.data.error === "NOT_FOUND") {
+    if (error.response.data.error === "NOT_FOUND") {
       return "Item não encontrado.";
     }
 
-    if (error.response?.data.error === "NOT_OWNED") {
+    if (error.response.data.error === "NOT_OWNED") {
       return "Item de outro autor.";
     }
 
-    if (error.response?.data.error === "DuplicateUserName") {
+    if (error.response.data.error === "DuplicateUserName") {
       return "Usuário já cadastrado.";
     }
 
-    if (error.response?.data.error === "PasswordTooShort") {
+    if (error.response.data.error === "PasswordTooShort") {
       return "Senha muito curta.";
     }
   }

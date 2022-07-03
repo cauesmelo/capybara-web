@@ -6,6 +6,7 @@ export interface TransitionProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const Transition = styled.div<TransitionProps>`
   position: relative;
+  flex: 1;
   ${(props) =>
     props.transitionStage === "fadeIn"
       ? css`
