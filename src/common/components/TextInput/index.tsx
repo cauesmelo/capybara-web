@@ -7,9 +7,10 @@ interface TextInputProps extends React.HTMLProps<HTMLInputElement> {
   state: IReactState<ITextInputState>;
   error?: string;
   textarea?: boolean;
+  placeholder?: string;
 }
 
-export const TextInput = ({ title, type, state, textarea }: TextInputProps) => {
+export const TextInput = ({ title, type, state, textarea, placeholder }: TextInputProps) => {
   const [value, setValue] = state;
 
   const handleChange = (e: any) => {
@@ -25,7 +26,7 @@ export const TextInput = ({ title, type, state, textarea }: TextInputProps) => {
       {textarea ? (
         <InputArea value={value.content} onChange={handleChange} />
       ) : (
-        <Input type={type} value={value.content} onChange={handleChange} />
+        <Input type={type} value={value.content} onChange={handleChange} placeholder={placeholder} />
       )}
       {value.error && <Error>{value.error}</Error>}
     </Wrapper>

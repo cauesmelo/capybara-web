@@ -20,9 +20,7 @@ export const createTaskList = async (tasklist: string): Promise<ITaskList> => {
   };
 };
 
-export const updateTaskList = async (
-  tasklist: ITaskList
-): Promise<ITaskList> => {
+export const updateTaskList = async (tasklist: ITaskList): Promise<ITaskList> => {
   const { data } = await api.put("tasklist/" + tasklist.id, tasklist);
   return {
     ...data,
