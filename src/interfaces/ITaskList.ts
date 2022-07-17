@@ -20,3 +20,8 @@ export interface ITaskUnity {
   title: string;
   isComplete: boolean;
 }
+
+export interface ITaskListCreate {
+  title: string;
+  tasks: string[];
+}

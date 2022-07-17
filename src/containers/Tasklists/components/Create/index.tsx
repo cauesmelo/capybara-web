@@ -19,6 +19,7 @@ import {
   TaskText,
 } from "./style";
 import { IoAddCircleOutline, IoInformationCircleOutline, IoTrashOutline } from "react-icons/io5";
+import { ITaskListCreate } from "../../../../interfaces/ITaskList";
 
 type CreatePopupProps = Pick<IGenericPopupProps, "show" | "onDismiss">;
 
@@ -28,7 +29,7 @@ export const Create = ({ show, onDismiss }: CreatePopupProps) => {
   const [tasks, setTasks] = useState<string[]>([]);
   const [addTask, setAddTask] = useState(false);
 
-  const createMutation = useMutation(async (note: string) => await createTaskList(note), {
+  const createMutation = useMutation(async (tasklist: ITaskListCreate) => await createTaskList(tasklist), {
     onSuccess: () => {
       queryClient.invalidateQueries("tasklists");
       toast.success("Lista de tarefas criada com sucesso");
@@ -49,8 +50,10 @@ export const Create = ({ show, onDismiss }: CreatePopupProps) => {
         error: "Campo obrigatório",
       });
     } else {
-      // console.log("123", new )
-      // await createMutation.mutateAsync(title.content);
+      await createMutation.mutateAsync({
+        title: title.content,
+        tasks: tasks,
+      });
     }
   };
 
@@ -74,6 +77,7 @@ export const Create = ({ show, onDismiss }: CreatePopupProps) => {
   useEffect(() => {
     if (!show) {
       setTitle(TextInputInitialState);
+      setTasks([]);
     }
   }, [show]);
 

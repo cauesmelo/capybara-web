@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { IoPencilOutline, IoTrashOutline } from "react-icons/io5";
 import { useRecoilValue } from "recoil";
 import { Button } from "../../common/components/Button";
 import { SmallLoading } from "../../common/components/SmallLoading";
@@ -9,21 +8,12 @@ import { authState } from "../../recoil/atoms";
 import { api } from "../../services/api";
 import { useTaskList } from "../../services/hooks/useTasklist";
 import { Create } from "./components/Create";
-import {
-  Content,
-  Line,
-  Note,
-  NoteContent,
-  NoteCreation,
-  NoteMenu,
-  NoteMenuButton,
-  Title,
-  Wrapper,
-} from "./style";
+import { DeleteTaskList } from "./components/Delete";
+import { TasklistCard } from "./components/TasklistCard";
+import { Content, Line, Title, Wrapper } from "./style";
 
 export const TasklistsContainer = () => {
   const [showCreatePopup, setShowCreatePopup] = useState(false);
-  const [showEditPopup, setShowEditPopup] = useState(false);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [selectedTaskList, setSelectedTaskList] = useState<ITaskList>();
 
@@ -31,18 +21,11 @@ export const TasklistsContainer = () => {
   api.defaults.headers.common["Authorization"] = `Bearer ${auth?.token}`;
 
   const { data, isLoading } = useTaskList();
-  console.log(data);
   const tasklists = data ?? [];
-  const { pageItems, setAllItems, Pagination } =
-    usePagination<ITaskList>(tasklists);
+  const { pageItems, setAllItems, Pagination } = usePagination<ITaskList>(tasklists);
 
   const handleOpenCreate = () => {
     setShowCreatePopup(true);
-  };
-
-  const handleOpenEdit = (tasklist: ITaskList) => {
-    setSelectedTaskList(tasklist);
-    setShowEditPopup(true);
   };
 
   const handleOpenDelete = (tasklist: ITaskList) => {
@@ -67,52 +50,22 @@ export const TasklistsContainer = () => {
         {!isLoading && (
           <>
             {pageItems.map((tasklist) => (
-              <Note key={tasklist.id}>
-                <NoteMenu>
-                  <NoteMenuButton onClick={() => handleOpenEdit(tasklist)}>
-                    <IoPencilOutline />
-                  </NoteMenuButton>
-
-                  <NoteMenuButton
-                    danger
-                    onClick={() => handleOpenDelete(tasklist)}
-                  >
-                    <IoTrashOutline />
-                  </NoteMenuButton>
-                </NoteMenu>
-
-                <NoteContent>{tasklist.title}</NoteContent>
-
-                <NoteCreation>
-                  {tasklist.createdAt.toLocaleDateString("pt-BR")}
-                </NoteCreation>
-              </Note>
+              <TasklistCard tasklist={tasklist} onDelete={() => handleOpenDelete(tasklist)} />
             ))}
             <Pagination />
           </>
         )}
       </Content>
 
-      <Create
-        show={showCreatePopup}
-        onDismiss={() => setShowCreatePopup(false)}
-      />
-
-      {/* {selectedTaskList && (
-        <EditNote
-          show={showEditPopup}
-          onDismiss={() => setShowEditPopup(false)}
-          selectedNote={selectedTaskList}
-        />
-      )}
+      <Create show={showCreatePopup} onDismiss={() => setShowCreatePopup(false)} />
 
       {selectedTaskList && (
-        <DeleteNote
+        <DeleteTaskList
           show={showDeletePopup}
           onDismiss={() => setShowDeletePopup(false)}
-          selectedNote={selectedTaskList}
+          selectedTaskList={selectedTaskList}
         />
-      )} */}
+      )}
     </Wrapper>
   );
 };

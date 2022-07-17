@@ -1,4 +1,4 @@
-import { ITaskList, ITaskListRaw } from "../interfaces/ITaskList";
+import { ITaskList, ITaskListCreate, ITaskListRaw } from "../interfaces/ITaskList";
 import { api } from "./api";
 
 export const getAllTaskLists = async (): Promise<ITaskList[]> => {
@@ -11,8 +11,8 @@ export const getAllTaskLists = async (): Promise<ITaskList[]> => {
   }));
 };
 
-export const createTaskList = async (tasklist: string): Promise<ITaskList> => {
-  const { data } = await api.post("tasklist", { content: tasklist });
+export const createTaskList = async (tasklist: ITaskListCreate): Promise<ITaskList> => {
+  const { data } = await api.post("tasklist", tasklist);
   return {
     ...data,
     createdAt: new Date(data.createdAt),

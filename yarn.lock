@@ -7936,10 +7936,10 @@ rsuite-table@^5.6.0:
     lodash "^4.17.21"
     react-is "^17.0.2"
 
-rsuite@^5.15.2:
-  version "5.15.2"
-  resolved "https://registry.yarnpkg.com/rsuite/-/rsuite-5.15.2.tgz#c49558d3f080a55264acd22c9988b9f567b288d1"
-  integrity sha512-y1NyggwjTMEzPqm6KaW6n59GGGN/z+Po69NF197YhUx3QwROzWgSlZMFVJ9+LIgA6vVcpkYFtzDyXqR2BCmInQ==
+rsuite@^5.16.1:
+  version "5.16.1"
+  resolved "https://registry.yarnpkg.com/rsuite/-/rsuite-5.16.1.tgz#3fe4a0b9493d95698714fae2dd761331a36cfd9d"
+  integrity sha512-+hKFIQGQ76lOZ7pXe9DWiXf3my57Zsist5fkBEm/4LrrqZRjB3P+Rua+1SfGLO5/YF4ndNBx3AiRrndrONHN7g==
   dependencies:
     "@babel/runtime" "^7.8.4"
     "@juggle/resize-observer" "^3.3.1"
@@ -7955,7 +7955,7 @@ rsuite@^5.15.2:
     prop-types "^15.7.2"
     react-virtualized "^9.22.3"
     rsuite-table "^5.6.0"
-    schema-typed "^2.0.2"
+    schema-typed "^2.0.3"
 
 run-parallel@^1.1.9:
   version "1.2.0"
@@ -8011,7 +8011,7 @@ scheduler@^0.22.0:
   dependencies:
     loose-envify "^1.1.0"
 
-schema-typed@^2.0.2:
+schema-typed@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/schema-typed/-/schema-typed-2.0.3.tgz#bfd84b31fbb2d13e748736637281032d8bcb2be8"
   integrity sha512-4KckVnJjTtVugYpSAoQrcH4quE4yIVTvI/nHEqtwdceBr/ZCuH2LfV8/gaZFrYU7cwwyufLKaswt28aqQ1T9ww==

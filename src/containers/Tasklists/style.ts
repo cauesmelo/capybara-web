@@ -1,10 +1,5 @@
 import styled, { css } from "styled-components";
 
-interface NoteMenuButtonProps {
-  danger?: boolean;
-  onClick?: () => void;
-}
-
 export const Wrapper = styled.div`
   margin: 2rem;
   display: flex;
@@ -24,15 +19,6 @@ export const Title = styled.div`
   font-size: 2.5rem;
 `;
 
-export const Note = styled.div`
-  border: 1px solid ${(props) => props.theme.strongBg};
-  border-radius: ${(props) => props.theme.borderRadius};
-`;
-
-export const NoteContent = styled.div`
-  padding: 0.1rem 1rem 0.5rem 1rem;
-`;
-
 export const NoteCreation = styled.div`
   text-align: right;
   font-style: italic;
@@ -47,25 +33,6 @@ export const Content = styled.div`
   gap: 10px;
 `;
 
-export const NoteMenu = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 0.5rem;
-  gap: 8px;
-  margin-top: 5px;
-`;
-
-export const NoteMenuButton = styled.div<NoteMenuButtonProps>`
-  cursor: pointer;
-  font-size: 1.2rem;
-
-  ${(props) =>
-    props.danger &&
-    css`
-      color: ${(props) => props.theme.error};
-    `}
-`;
-
 export const AlertText = styled.div`
   margin-top: 1rem;
   color: ${(props) => props.theme.error};
@@ -75,7 +42,7 @@ export const AlertText = styled.div`
   }
 `;
 
-export const NoteShowCase = styled.div`
+export const ShowCase = styled.div`
   padding: 10px;
   margin: 10px;
   border: 1px solid ${(props) => props.theme.strongBg};
