@@ -4,21 +4,20 @@ import { useRecoilValue } from "recoil";
 import { Button } from "../../common/components/Button";
 import { SmallLoading } from "../../common/components/SmallLoading";
 import { usePagination } from "../../common/hooks/usePagination";
-import { INote } from "../../interfaces/INote";
+import { IReminder } from "../../interfaces/IReminder";
 import { authState } from "../../recoil/atoms";
 import { api } from "../../services/api";
-import { useNote } from "../../services/hooks/useNotes";
-import { CreateNote } from "./components/CreateNote";
-import { DeleteNote } from "./components/DeleteNote";
-import { EditNote } from "./components/EditNote";
+import { useReminder } from "../../services/hooks/useReminders";
+import { CreateReminder } from "./components/CreateReminder";
+import { DeleteReminder } from "./components/DeleteReminder";
 import {
   Content,
   Line,
-  Note,
-  NoteContent,
-  NoteCreation,
-  NoteMenu,
-  NoteMenuButton,
+  Reminder,
+  ReminderContent,
+  ReminderCreation,
+  ReminderMenu,
+  ReminderMenuButton,
   Title,
   Wrapper,
 } from "./style";
@@ -27,39 +26,34 @@ export const RemindersContainer = () => {
   const [showCreatePopup, setShowCreatePopup] = useState(false);
   const [showEditPopup, setShowEditPopup] = useState(false);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
-  const [selectedNote, setSelectedNote] = useState<INote>();
+  const [selectedReminder, setSelectedReminder] = useState<IReminder>();
 
   const auth = useRecoilValue(authState);
   api.defaults.headers.common["Authorization"] = `Bearer ${auth?.token}`;
 
-  const { pageItems, setAllItems, Pagination } = usePagination<INote>();
+  const { pageItems, setAllItems, Pagination } = usePagination<IReminder>();
 
-  const { data, isLoading } = useNote();
-  const notes = data ?? [];
+  const { data, isLoading } = useReminder();
+  const reminders = data ?? [];
 
   const handleOpenCreate = () => {
     setShowCreatePopup(true);
   };
 
-  const handleOpenEdit = (note: INote) => {
-    setSelectedNote(note);
-    setShowEditPopup(true);
-  };
-
-  const handleOpenDelete = (note: INote) => {
-    setSelectedNote(note);
+  const handleOpenDelete = (reminder: IReminder) => {
+    setSelectedReminder(reminder);
     setShowDeletePopup(true);
   };
 
   useEffect(() => {
-    setAllItems(notes);
+    setAllItems(reminders);
   }, [data]);
 
   return (
     <Wrapper>
       <Line>
         <Title>Lembretes</Title>
-        <Button onClick={handleOpenCreate}>Criar lista</Button>
+        <Button onClick={handleOpenCreate}>Criar lembrete</Button>
       </Line>
 
       <Content>
@@ -67,48 +61,33 @@ export const RemindersContainer = () => {
 
         {!isLoading && (
           <>
-            {pageItems.map((note) => (
-              <Note key={note.id}>
-                <NoteMenu>
-                  <NoteMenuButton onClick={() => handleOpenEdit(note)}>
-                    <IoPencilOutline />
-                  </NoteMenuButton>
-
-                  <NoteMenuButton danger onClick={() => handleOpenDelete(note)}>
+            {pageItems.map((reminder) => (
+              <Reminder key={reminder.id}>
+                <ReminderMenu>
+                  <ReminderMenuButton danger onClick={() => handleOpenDelete(reminder)}>
                     <IoTrashOutline />
-                  </NoteMenuButton>
-                </NoteMenu>
+                  </ReminderMenuButton>
+                </ReminderMenu>
 
-                <NoteContent>{note.content}</NoteContent>
+                <ReminderContent>
+                  {reminder.title} - {reminder.reminderDate.toLocaleString("pt-BR")}
+                </ReminderContent>
 
-                <NoteCreation>
-                  {note.createdAt.toLocaleDateString("pt-BR")}
-                </NoteCreation>
-              </Note>
+                <ReminderCreation>{reminder.createdAt.toLocaleString("pt-BR")}</ReminderCreation>
+              </Reminder>
             ))}
             <Pagination />
           </>
         )}
       </Content>
 
-      <CreateNote
-        show={showCreatePopup}
-        onDismiss={() => setShowCreatePopup(false)}
-      />
+      <CreateReminder show={showCreatePopup} onDismiss={() => setShowCreatePopup(false)} />
 
-      {selectedNote && (
-        <EditNote
-          show={showEditPopup}
-          onDismiss={() => setShowEditPopup(false)}
-          selectedNote={selectedNote}
-        />
-      )}
-
-      {selectedNote && (
-        <DeleteNote
+      {selectedReminder && (
+        <DeleteReminder
           show={showDeletePopup}
           onDismiss={() => setShowDeletePopup(false)}
-          selectedNote={selectedNote}
+          selectedReminder={selectedReminder}
         />
       )}
     </Wrapper>
